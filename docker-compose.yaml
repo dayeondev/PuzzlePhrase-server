@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+
+  pp-back:
+    container_name: pp-back
+    hostname: pp-back
+    image: pp-back:dev
+    command: uvicorn --reload --host 0.0.0.0 --port 2312 app.main:app
+    build: ./src
+    working_dir: /app
+    ports:
+      - "2312:2312"
+    volumes:
+      - ./src:/app
+      - ./.env:/app/.env
